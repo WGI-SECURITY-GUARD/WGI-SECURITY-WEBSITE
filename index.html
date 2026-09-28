@@ -85,7 +85,7 @@ document.querySelectorAll("#nav a").forEach(x=>x.classList.toggle("on",x.dataset
 const fm=$.querySelector("form");if(fm)fm.onsubmit=send}
 async function send(e){e.preventDefault();const f=e.target,m=document.getElementById("msg"),b=f.querySelector("button");
 if(!SCRIPT_URL){m.textContent="ยังไม่ได้ตั้งค่า SCRIPT_URL ในโค้ด (ดูบรรทัดบนสุดของ <script>)";return}
-const d=new FormData(f);d.append("type",f.dataset.type);b.disabled=true;m.textContent="กำลังส่ง...";
+const d=new URLSearchParams(new FormData(f));d.append("type",f.dataset.type);b.disabled=true;m.textContent="กำลังส่ง...";
 try{await fetch(SCRIPT_URL,{method:"POST",mode:"no-cors",body:d});f.reset();m.textContent="ส่งข้อมูลเรียบร้อย ขอบคุณค่ะ"}catch(x){m.textContent="ส่งไม่สำเร็จ ลองใหม่อีกครั้ง"}b.disabled=false}
 addEventListener("hashchange",route);route();
 </script></body></html>
